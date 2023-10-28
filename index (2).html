@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Sari-Sari Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #4f775a;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #ffffff;
+        }
+
+        h2 {
+            color: #b8a18b;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        p {
+            line-height: 1.5;
+        }
+
+        footer {
+            background-color: #4f775a;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .header-image {
+            width: 150px;
+            height: 150px;
+            background-image: url('https://i.pinimg.com/736x/11/e7/5b/11e75b919b1b61dc5cae47d0a7c8defb.jpg');
+            background-size: cover;
+            background-position: center top;
+            background-repeat: no-repeat;
+            border-radius: 50%;
+            margin: 0 auto;
+            overflow: hidden;
+            background-color: #ffcc00;
+        }
+
+        .product-collage {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .product-item {
+            text-align: center;
+            margin: 10px;
+            width: 200px;
+            position: relative;
+        }
+
+        .product-image {
+            width: 150px;
+            height: 150px;
+            animation: productAnimation 2s infinite alternate;
+        }
+
+        .animated-text {
+            animation: textAnimation 2s infinite;
+        }
+
+        @keyframes productAnimation {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes textAnimation {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .product-name {
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .add-to-cart {
+            display: none;
+            position: relative;
+        }
+
+        .cart-animation {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .product-item:hover .add-to-cart {
+            display: block;
+        }
+
+        footer {
+            background-color: #4f775a;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* Hamburger Menu Styles */
+        .menu-container {
+            display: none;
+            position: absolute;
+            background-color: #4f775a;
+            text-align: right;
+            width: 100%;
+            top: 60px;
+            right: 0;
+            z-index: 1;
+        }
+
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu li {
+            padding: 15px;
+        }
+
+        .menu-toggle {
+            display: block;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            cursor: pointer;
+            color: #fff;
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-image"></div>
+        <span class="menu-toggle" id="menuToggle">&#9776;</span>
+        <center>
+            <h1>Welcome to Our Sari-Sari Store</h1>
+            <h2>Your One-Stop Shop for Everyday Needs</h2>
+        </center>
+    </header>
+
+    <div class="container">
+        <h2>About Us</h2>
+        <p>
+            Welcome to Sari-Sari Store, your friendly neighborhood grocery store, providing you with a wide range of products that meet your daily needs. We take
+            pride in offering quality products and excellent service to our customers.
+        </p>
+
+        <h2>Our Products</h2>
+        <div class="product-collage">
+            <div class="product-item">
+                <img class="product-image" src="https://i.pinimg.com/564x/cf/f6/98/cff6987ef51daffa963507d051bad0b5.jpg" alt="Snacks and Candy">
+                <div class="product-name animated-text">Snacks and Candy</div>
+                <div class="add-to-cart">
+                    <img src="addtocart.gif" alt="Add to Cart" class="cart-animation">
+                </div>
+            </div>
+            <div class="product-item">
+                <img class="product-image" src="https://i.pinimg.com/564x/b0/b8/45/b0b8455591a6b2aebffa1da1c4a82825.jpg" alt="Soft drinks and beverages">
+                <div class="product-name animated-text">Soft drinks and beverages</div>
+            </div>
+            <!-- Add more product items as needed -->
+        </div>
+    </div>
+
+    <footer>
+        &copy; Sari-Sari Store Inc.
+    </footer>
+
+    <!-- Hamburger Menu -->
+    <div class="menu-container" id="menuContainer">
+        <ul class="menu">
+            <li><a href="#">Home</a></li>
+            <li><a href="#signup">Sign Up</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#otherinfo">Other Information</a></li>
+        </ul>
+    </div>
+
+    <script>
+        const products = document.querySelectorAll('.product-item');
+        const productNames = document.querySelectorAll('.product-name');
+        let currentProductIndex = 0;
+
+        function showProduct(index) {
+            products.forEach((product, i) => {
+                product.style.display = i === index ? 'block' : 'none';
+            });
+
+            product             productNames.forEach((name, i) => {
+                name.style.display = i === index ? 'block' : 'none';
+            });
+        }
+
+        function showNextProduct() {
+            currentProductIndex = (currentProductIndex + 1) % products.length;
+            showProduct(currentProductIndex);
+        }
+
+        function showPreviousProduct() {
+            currentProductIndex = (currentProductIndex - 1 + products.length) % products.length;
+            showProduct(currentProductIndex);
+        }
+
+        // Toggle the hamburger menu
+        const menuToggle = document.getElementById("menuToggle");
+        const menuContainer = document.getElementById("menuContainer");
+
+        menuToggle.addEventListener("click", () => {
+            if (menuContainer.style.display === "block") {
+                menuContainer.style.display = "none";
+            } else {
+                menuContainer.style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>
